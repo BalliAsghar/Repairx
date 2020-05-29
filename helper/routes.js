@@ -55,8 +55,8 @@ router.post("/job/:_id", (req, res) => {
     .catch((err) => res.json(err));
 });
 // Update Job
-router.post("/updatejob/:_id", (req, res) => {
-  // still need to find better way to do!
+router.put("/updatejob/:_id", (req, res) => {
+  // not working!
 });
 
 module.exports = router;
