@@ -1,6 +1,8 @@
 const express = require("express");
 const Job = require("./model");
 const router = express.Router();
+const checkid = require("mongoose").isValidObjectId();
+
 // job post route
 router.post("/job", (req, res) => {
   const job = new Job({
@@ -21,6 +23,7 @@ router.post("/job", (req, res) => {
     })
     .catch((err) => res.json(err));
 });
+
 // Get all jobs
 router.get("/jobs", (req, res) => {
   Job.find({})
@@ -29,6 +32,12 @@ router.get("/jobs", (req, res) => {
     })
     .catch((err) => res.json(err));
 });
+
+// Get Job by Id
+router.get("/job/:_id", (req, res) => {
+  Job.findById(req.params._id).then((job) => {});
+});
+
 // remove job
 router.post("/job/:_id", (req, res) => {
   Job.findByIdAndRemove(req.params._id)

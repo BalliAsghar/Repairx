@@ -11,6 +11,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+console.log(mongoose.isValidObjectId("asdasdsa"));
+
 // database connection
 mongoose.connect(
   env.DBURL,
