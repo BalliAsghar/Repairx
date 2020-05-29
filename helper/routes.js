@@ -25,12 +25,9 @@ router.post("/job", (req, res) => {
 });
 
 // Get all jobs
-router.get("/jobs", (req, res) => {
-  Job.find({})
-    .then((job) => {
-      res.json(job);
-    })
-    .catch((err) => res.json(err));
+router.get("/jobs", async (req, res) => {
+  const job = await Job.find({});
+  res.json(job);
 });
 
 // Get Job by Id
