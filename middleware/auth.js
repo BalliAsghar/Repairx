@@ -12,11 +12,11 @@ module.exports = (req, res, next) => {
   // Verify token
   try {
     jwt.verify(token, key, (error, decoded) => {
-      if (error) {
-        return res.status(401).json({ msg: "Token is not valid" });
-      } else {
-        req.user = decoded.user;
+      if (error == null) {
+        req.user = decoded;
         next();
+      } else {
+        return res.json({ msg: "Not a Valid Token, authorization denied" });
       }
     });
   } catch (err) {
