@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const Job = require("./models/model");
 const routes = require("./routes/routes");
-
+const UserRoute = require("./routes/user.route");
 // app initialization
 const app = express();
 app.use(bodyParser.json());
@@ -24,5 +24,6 @@ mongoose.connect(
 // index route
 app.get("/", (req, res) => res.send("Hello"));
 app.use("/", routes);
+app.use("/", UserRoute);
 // server initialization
 app.listen(env.PORT, (err) => console.log("Server Working"));

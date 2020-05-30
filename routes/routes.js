@@ -1,7 +1,7 @@
 const express = require("express");
 const Job = require("../models/model");
 const router = express.Router();
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const helper = require("../helper/helper");
 // job post route
 router.post("/job", async (req, res) => {
@@ -43,8 +43,10 @@ router.post("/job/:_id", async (req, res) => {
   if (!helper.isValidId(_id)) {
     return res.json({ msg: "ID Not Valid" });
   }
-  const remove = await Job.findByIdAndRemove(_id);
-
+  const removejob = await Job.findByIdAndRemove(_id);
+  if (removejob == null) {
+    return res.json({ msg: "Job Doesn't exist!'" });
+  }
   return res.json({ msg: `Job ${_id} removed` });
 });
 // Update Job
