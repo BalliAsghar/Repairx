@@ -8,34 +8,25 @@ const key = require("../env/env").secretOrKey;
 // Registry for User
 router.post("/user", async (req, res) => {
   const { username, password } = req.body;
+  const checkusername = await User.findOne({ username });
 
-  let user = await User.findOne({ username });
+  if (checkusername == null) {
+    const user = new User({
+      username,
+      password,
+    });
 
-  if (user) {
-    return res.json({ msg: "User already exists!" });
+    const salt = await bcrypt.genSalt(10);
+
+    user.password = await bcrypt.hash(password, salt);
+
+    await user.save();
+
+    const token = await jwt.sign({ username }, key);
+
+    return res.json({ token });
   }
-
-  user = new User({
-    username,
-    password,
-  });
-  // username not saving in db.
-  const salt = await bcrypt.genSalt(10);
-
-  user.password = await bcrypt.hash(password, salt);
-
-  await user.save();
-
-  const payload = {
-    user: {
-      id: user.id,
-    },
-  };
-
-  jwt.sign(payload, key, { expiresIn: "360000" }, (err, token) => {
-    if (err) throw err;
-    res.json({ token });
-  });
+  return res.json({ msg: `${username} already exist!` });
 });
 
 // Log User In
