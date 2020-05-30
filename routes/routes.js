@@ -21,7 +21,7 @@ router.post("/job", auth, async (req, res) => {
 });
 
 // Get all jobs
-router.get("/jobs", async (req, res) => {
+router.get("/jobs", auth, async (req, res) => {
   const job = await Job.find({});
   res.json(job);
 });
@@ -38,7 +38,7 @@ router.get("/job/:_id", async (req, res) => {
 });
 
 // remove job
-router.post("/job/:_id", async (req, res) => {
+router.post("/job/:_id", auth, async (req, res) => {
   const _id = req.params._id;
   if (!helper.isValidId(_id)) {
     return res.json({ msg: "ID Not Valid" });
@@ -50,7 +50,7 @@ router.post("/job/:_id", async (req, res) => {
   return res.json({ msg: `Job ${_id} removed` });
 });
 // Update Job
-router.put("/updatejob/:_id", async (req, res) => {
+router.put("/updatejob/:_id", auth, async (req, res) => {
   const _id = req.params._id;
 
   if (helper.isValidId(_id)) {
