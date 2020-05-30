@@ -19,7 +19,7 @@ router.post("/user", async (req, res) => {
     username,
     password,
   });
-
+  // username not saving in db.
   const salt = await bcrypt.genSalt(10);
 
   user.password = await bcrypt.hash(password, salt);
