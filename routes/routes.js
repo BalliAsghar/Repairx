@@ -2,7 +2,7 @@ const express = require("express");
 const Job = require("../models/model");
 const router = express.Router();
 // const mongoose = require("mongoose");
-const helper = require("../helper/helper");
+const helper = require("../middleware/helper");
 // job post route
 router.post("/job", async (req, res) => {
   const job = new Job({

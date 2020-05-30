@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const env = require("./env/env");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const Job = require("./models/model");
 const routes = require("./routes/routes");
 const UserRoute = require("./routes/user.route");
 // app initialization
