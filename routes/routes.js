@@ -1,10 +1,11 @@
 const express = require("express");
 const Job = require("../models/model");
 const router = express.Router();
-// const mongoose = require("mongoose");
 const helper = require("../middleware/helper");
+const auth = require("../middleware/auth");
+
 // job post route
-router.post("/job", async (req, res) => {
+router.post("/job", auth, async (req, res) => {
   const job = new Job({
     name: req.body.name,
     item: req.body.item,

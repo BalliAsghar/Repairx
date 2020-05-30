@@ -30,5 +30,22 @@ router.post("/user", async (req, res) => {
 });
 
 // Log User In
-router.post("/user/login", async (req, res) => {});
+router.post("/user/login", async (req, res) => {
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
+
+  if (user == null) {
+    return res.json({ msg: "User does not exist!" });
+  }
+
+  const checkpwd = await bcrypt.compare(password, user.password);
+
+  if (!checkpwd) {
+    return res.json({ msg: "Password do not match!" });
+  }
+
+  const token = await jwt.sign({ username: user.username }, key);
+
+  return res.json({ token: token });
+});
 module.exports = router;
