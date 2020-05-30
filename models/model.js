@@ -7,6 +7,7 @@ const jobmodel = mongoose.Schema({
   problem: { type: String },
   number: { type: Number },
   price: { type: String },
+  addedby: { type: String },
 });
 
 module.exports = Job = mongoose.model("Job", jobmodel);

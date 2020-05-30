@@ -6,6 +6,7 @@ const auth = require("../middleware/auth");
 
 // job post route
 router.post("/job", auth, async (req, res) => {
+  console.log(req.user);
   const job = new Job({
     name: req.body.name,
     item: req.body.item,
@@ -15,8 +16,6 @@ router.post("/job", auth, async (req, res) => {
   });
 
   const save = await job.save();
-
-  console.log(save);
 
   return res.json({ msg: "Job Saved!" });
 });
