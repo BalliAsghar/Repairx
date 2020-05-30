@@ -4,6 +4,8 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const key = require("../env/env").secretOrKey;
+const Job = require("../models/model");
+const auth = require("../middleware/auth");
 
 // Registry for User
 router.post("/user", async (req, res) => {
@@ -54,4 +56,5 @@ router.post("/user/login", async (req, res) => {
 
   return res.json({ token: token });
 });
+
 module.exports = router;
