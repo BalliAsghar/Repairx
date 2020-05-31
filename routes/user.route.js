@@ -7,7 +7,7 @@ const key = require("../env/env").secretOrKey;
 const Job = require("../models/model");
 const auth = require("../middleware/auth");
 
-// Registry for User
+// Registry User
 router.post("/user", async (req, res) => {
   const { username, password } = req.body;
   const checkusername = await User.findOne({ username });
@@ -55,6 +55,18 @@ router.post("/user/login", async (req, res) => {
   const token = await jwt.sign({ username: user.username }, key);
 
   return res.json({ token: token });
+});
+
+// get job by user
+router.get("/my/jobs", auth, async (req, res) => {
+  const username = req.user.username;
+  const user = await Job.find({ addedby: username });
+
+  if (user.length <= 0) {
+    return res.json({ msg: "No Jobs!" });
+  }
+
+  return res.json({ size: user.length, jobs: user });
 });
 
 module.exports = router;
