@@ -26,7 +26,7 @@ router.get("/jobs", auth, async (req, res) => {
 });
 
 // Get Job by Id
-router.get("/job/:_id", async (req, res) => {
+router.get("/job/:_id", auth, async (req, res) => {
   const _id = req.params._id;
   if (!helper.isValidId(_id)) {
     return res.json({ msg: "ID Not Valid" });
