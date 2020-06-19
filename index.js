@@ -27,7 +27,11 @@ mongoose.connect(
 app.get("/", (req, res) => res.send("Hello"));
 app.use("/", JobRoutes);
 app.use("/", UserRoute);
+
+// Port
+const port = process.env.PORT || 8080;
+
 // server initialization
-app.listen(process.env.PORT, (err) =>
+app.listen(port, (err) =>
   console.log(`Server Working At Port: ${process.env.PORT}`)
 );
