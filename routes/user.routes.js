@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const key = require("../env/env").secretOrKey;
 const Job = require("../models/model");
 const auth = require("../middleware/auth");
+const { exp } = require("../middleware/helper");
 
 // Registry User
 router.post("/user", async (req, res) => {
@@ -30,7 +31,7 @@ router.post("/user", async (req, res) => {
       },
     };
 
-    const token = await jwt.sign({ username }, key);
+    const token = await jwt.sign({ username }, key, { expiresIn: exp() });
 
     return res.json({ token });
   }
@@ -52,7 +53,9 @@ router.post("/user/login", async (req, res) => {
     return res.json({ msg: "Password do not match!" });
   }
 
-  const token = await jwt.sign({ username: user.username }, key);
+  const token = await jwt.sign({ username: user.username }, key, {
+    expiresIn: exp(),
+  });
 
   return res.json({ token: token });
 });
