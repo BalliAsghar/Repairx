@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const JobRoutes = require("./routes/jobs.routes");
 const morgan = require("morgan");
-const UserRoute = require("./routes/user.route");
+const UserRoute = require("./routes/user.routes");
 // app initialization
 const app = express();
 app.use(bodyParser.json());
