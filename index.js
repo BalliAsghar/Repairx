@@ -25,4 +25,4 @@ app.get("/", (req, res) => res.send("Hello"));
 app.use("/", routes);
 app.use("/", UserRoute);
 // server initialization
-app.listen(env.PORT, (err) => console.log("Server Working"));
+app.listen(env.PORT, (err) => console.log(`Server Working At Port: ${env.PORT}`));
