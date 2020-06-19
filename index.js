@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const env = require("./env/env");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const routes = require("./routes/routes");
+const JobRoutes = require("./routes/jobs.routes");
 const morgan = require("morgan");
 const UserRoute = require("./routes/user.route");
 // app initialization
@@ -25,7 +25,7 @@ mongoose.connect(
 
 // index route
 app.get("/", (req, res) => res.send("Hello"));
-app.use("/", routes);
+app.use("/", JobRoutes);
 app.use("/", UserRoute);
 // server initialization
 app.listen(env.PORT, (err) =>
