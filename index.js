@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const connectdb = require("./config/db");
 const cors = require("cors");
 const JobRoutes = require("./routes/jobs.routes");
 const morgan = require("morgan");
@@ -14,14 +15,7 @@ app.use(morgan("dev"));
 dotenv.config({ path: "./config/config.env" });
 
 // database connection
-mongoose.connect(
-  process.env.DB_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  (err, db) => {
-    if (err) throw err;
-    console.log("db Working");
-  }
-);
+connectdb();
 
 // index route
 app.get("/", (req, res) => res.send("Hello"));
