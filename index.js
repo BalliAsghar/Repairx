@@ -7,6 +7,7 @@ const JobRoutes = require("./routes/jobs.routes");
 const morgan = require("morgan");
 const UserRoute = require("./routes/user.routes");
 const dotenv = require("dotenv");
+const exphbs = require("express-handlebars");
 // app initialization
 const app = express();
 app.use(bodyParser.json());
@@ -18,9 +19,13 @@ dotenv.config({ path: "./config/config.env" });
 connectdb();
 
 // index route
-app.get("/", (req, res) => res.send("Hello"));
-app.use("/", JobRoutes);
-app.use("/", UserRoute);
+app.get("/", (req, res) => res.render("login"));
+app.use("/api", JobRoutes);
+app.use("/user", UserRoute);
+
+// Hbs
+app.engine(".hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
+app.set("view engine", ".hbs");
 
 // Port
 const port = process.env.PORT || 8080;
