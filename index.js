@@ -8,6 +8,7 @@ const morgan = require("morgan");
 const UserRoute = require("./routes/user.routes");
 const dotenv = require("dotenv");
 const exphbs = require("express-handlebars");
+const colors = require("colors");
 // app initialization
 const app = express();
 app.use(bodyParser.json());
@@ -32,5 +33,5 @@ const port = process.env.PORT || 8080;
 
 // server initialization
 app.listen(port, (err) =>
-  console.log(`Server Working At Port: ${process.env.PORT}`)
+  console.log(`Server Working At Port:`.bold + `${process.env.PORT.blue.bold}`)
 );
