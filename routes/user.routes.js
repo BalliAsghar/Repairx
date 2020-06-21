@@ -9,7 +9,7 @@ const auth = require("../middleware/auth");
 const { exp } = require("../middleware/helper");
 
 // Registry User
-router.post("/user", async (req, res) => {
+router.post("/register", async (req, res) => {
   const { username, password } = req.body;
   const checkusername = await User.findOne({ username });
 

@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -20,13 +21,16 @@ dotenv.config({ path: "./config/config.env" });
 connectdb();
 
 // index route
-app.get("/", (req, res) => res.render("login"));
+app.get("/", (req, res) => res.render("login", { layout: "login" }));
 app.use("/api", JobRoutes);
-app.use("/user", UserRoute);
+app.use("/", UserRoute);
 
 // Hbs
 app.engine(".hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
 app.set("view engine", ".hbs");
+
+// Static Folder
+app.use(express.static(path.join(__dirname, "/public")));
 
 // Port
 const port = process.env.PORT || 8080;
