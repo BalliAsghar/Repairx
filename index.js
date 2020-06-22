@@ -14,14 +14,15 @@ const colors = require("colors");
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.use(morgan("tiny"));
+app.use(morgan("dev"));
+
 dotenv.config({ path: "./config/config.env" });
 
 // database connection
 connectdb();
 
 // index route
-app.get("/", (req, res) => res.send("Hello"));
+app.get("/", (req, res) => res.status(200).send("Hello"));
 app.use("/api", JobRoutes);
 app.use("/user", UserRoute);
 

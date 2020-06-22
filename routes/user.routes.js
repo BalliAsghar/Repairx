@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const key = require("../config/config.env").secretOrKey;
 const Job = require("../models/model");
 const auth = require("../middleware/auth");
 const { exp } = require("../middleware/helper");
@@ -31,7 +30,9 @@ router.post("/register", async (req, res) => {
       },
     };
 
-    const token = await jwt.sign({ username }, key, { expiresIn: exp() });
+    const token = await jwt.sign({ username }, process.env.secretOrKey, {
+      expiresIn: exp(),
+    });
 
     return res.json({ token });
   }
@@ -53,9 +54,13 @@ router.post("/login", async (req, res) => {
     return res.json({ msg: "Password do not match!" });
   }
 
-  const token = await jwt.sign({ username: user.username }, key, {
-    expiresIn: exp(),
-  });
+  const token = await jwt.sign(
+    { username: user.username },
+    process.env.secretOrKey,
+    {
+      expiresIn: exp(),
+    }
+  );
 
   return res.json({ token: token });
 });
