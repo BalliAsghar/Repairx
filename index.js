@@ -1,4 +1,3 @@
-const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const connectdb = require("./config/db");
@@ -7,7 +6,6 @@ const JobRoutes = require("./routes/jobs.routes");
 const morgan = require("morgan");
 const UserRoute = require("./routes/user.routes");
 const dotenv = require("dotenv");
-const exphbs = require("express-handlebars");
 const colors = require("colors");
 
 // app initialization
