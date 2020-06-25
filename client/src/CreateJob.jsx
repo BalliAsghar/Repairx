@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default () => {
   const [name, setName] = useState("");
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState("");
   const [item, setItem] = useState("");
   const [problem, setProblem] = useState("");
   const [price, setPrice] = useState("");
@@ -25,24 +25,22 @@ export default () => {
     price,
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post(
-        URI,
-        {
-          headers: {
-            "Access-Control-Allow-Headers": "x-access-token",
-            "content-type": "application/json",
-            "x-auth-token": token,
-          },
-        },
-        { data: Job }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
+    const res = await axios({
+      url: "http://localhost:8080/api/job",
+      method: "POST",
+      headers: {
+        "x-auth-token": localStorage.getItem("login"),
+        "Content-Type": "application/json",
+      },
+      data: Job,
+    });
+    setName("");
+    setItem("");
+    setNumber("");
+    setPrice("");
+    setProblem("");
   };
   return (
     <div>

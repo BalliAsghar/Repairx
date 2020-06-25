@@ -12,7 +12,7 @@ const colors = require("colors");
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 
 dotenv.config({ path: "./config/config.env" });
 
