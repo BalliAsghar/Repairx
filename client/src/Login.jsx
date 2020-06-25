@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import svg from "bootstrap-icons/icons/briefcase.svg";
 export default () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -26,27 +27,30 @@ export default () => {
 
   return (
     <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Username</label>
-          <input
-            className="form-control"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+      <form className="form-login text-center">
+        <img src={svg} height={72} width={72} />
+        <h1 className="h3 md-3 font-weight-normal">Login</h1>
+        <label className="sr-only">Email address</label>
+        <input
+          type="username"
+          className="form-control m-md-2"
+          placeholder="Username"
+        />
+        <label className="sr-only">Password</label>
+        <input
+          type="password"
+          className="form-control m-md-2"
+          placeholder="Password"
+          required
+        />
+        <div className="custom-checkbox mb-3">
+          <label>
+            <input type="checkbox" defaultValue="remember-me" /> Remember me
+          </label>
         </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            className="form-control"
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button className="btn btn-primary">Submit</button>
+        <button className="btn btn-lg btn-primary btn-block" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

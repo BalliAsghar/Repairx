@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { Button } from "@material-ui/core";
-
 export default () => {
   const token = localStorage.getItem("token");
   let jobs = [];
@@ -22,9 +20,7 @@ export default () => {
 
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={getJobs}>
-        Primary
-      </Button>
+      <p>Get Jobs</p>
     </div>
   );
 };

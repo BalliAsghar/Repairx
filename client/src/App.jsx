@@ -6,7 +6,7 @@ import GetJobs from "./GetJobs";
 
 export default () => {
   return (
-    <div className="container-md">
+    <div>
       <Router>
         <Switch>
           <Route exact path="/">
