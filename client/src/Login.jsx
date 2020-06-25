@@ -18,7 +18,7 @@ export default () => {
       },
     });
     const token = res.data.token;
-    localStorage.setItem("login", token);
+    localStorage.setItem("token", token);
 
     setUsername("");
     setPassword("");

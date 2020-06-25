@@ -15,7 +15,10 @@ module.exports = (req, res, next) => {
         req.user = decoded;
         next();
       } else {
-        return res.json({ msg: "Not a Valid Token, authorization denied" });
+        return res.json({
+          Status: 401,
+          msg: "Not a Valid Token, authorization denied",
+        });
       }
     });
   } catch (err) {

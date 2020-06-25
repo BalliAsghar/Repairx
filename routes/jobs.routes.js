@@ -16,13 +16,13 @@ router.post("/job", auth, async (req, res) => {
   });
   const save = await job.save();
 
-  return res.json({ msg: "Job Saved!" });
+  return res.json({ Status: 201, msg: "Job Saved!" });
 });
 
 // Get all jobs
 router.get("/jobs", auth, async (req, res) => {
   const job = await Job.find({});
-  res.json(job);
+  res.json({ Status: 200, job });
 });
 
 // Get Job by Id
@@ -33,7 +33,7 @@ router.get("/job/:_id", auth, async (req, res) => {
   }
   const job = await Job.findById({ _id });
 
-  return res.json(job);
+  return res.json({ Status: 200, job });
 });
 
 // remove job
