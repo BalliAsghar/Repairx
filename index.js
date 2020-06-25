@@ -29,5 +29,7 @@ const port = process.env.PORT || 8080;
 
 // server initialization
 app.listen(port, (err) =>
-  console.log(`Server Working At Port:`.bold + `${process.env.PORT.blue.bold}`)
+  console.log(
+    `Server Working At Port:`.bold + `${process.env.PORT.underline.bold}`
+  )
 );
