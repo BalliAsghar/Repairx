@@ -9,15 +9,9 @@ export default () => {
     <div>
       <Router>
         <Switch>
-          <Route exact path="/">
-            <GetJobs />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <CreateJob />
-          </Route>
+          <Route exact path="/" component={GetJobs} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={CreateJob} />
         </Switch>
       </Router>
     </div>
