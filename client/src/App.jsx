@@ -1,15 +1,25 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CreateJob from "./CreateJob";
 import Login from "./Login";
 import GetJobs from "./GetJobs";
 
 export default () => {
-  const login = localStorage.getItem("login");
-
   return (
-    // <div className="container-md">{login ? <CreateJob /> : <Login />}</div>
     <div className="container-md">
-      <GetJobs />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <GetJobs />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <CreateJob />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 };
