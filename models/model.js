@@ -6,7 +6,7 @@ const jobmodel = mongoose.Schema({
   item: { type: String },
   problem: { type: String },
   number: { type: Number },
-  price: { type: String },
+  price: { type: Number },
   addedby: { type: String },
 });
 

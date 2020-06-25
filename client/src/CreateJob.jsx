@@ -8,15 +8,6 @@ export default () => {
   const [problem, setProblem] = useState("");
   const [price, setPrice] = useState("");
 
-  const URI = "http://localhost:8080/api/job";
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJhbGxpIiwiaWF0IjoxNTkzMDI1NjQ3LCJleHAiOjE1OTM2MzA0NDd9.DIauxRepDSwVkIcbWwQ3jUKZ6VR23HwtfbJicCfeV-0";
-  // const data = {
-  //   headers: {
-  //     "X-Auth-Token": token,
-  //     "content-type": "application/json",
-  //   },
-  // };
   let Job = {
     name,
     item,
