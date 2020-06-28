@@ -3,8 +3,6 @@ const router = express.Router();
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const Job = require("../models/model");
-const auth = require("../middleware/auth");
 const { exp } = require("../middleware/helper");
 
 // Registry User
@@ -63,18 +61,6 @@ router.post("/login", async (req, res) => {
   );
 
   return res.json({ token: token });
-});
-
-// get job by user
-router.get("/my/jobs", auth, async (req, res) => {
-  const username = req.user.username;
-  const user = await Job.find({ addedby: username });
-
-  if (user.length <= 0) {
-    return res.json({ msg: "No Jobs!" });
-  }
-
-  return res.json({ size: user.length, jobs: user });
 });
 
 module.exports = router;

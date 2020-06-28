@@ -1,5 +1,6 @@
 const express = require("express");
 const Job = require("../models/model");
+const User = require("../models/user");
 const router = express.Router();
 const helper = require("../middleware/helper");
 const auth = require("../middleware/auth");
@@ -62,6 +63,18 @@ router.put("/updatejob/:_id", auth, async (req, res) => {
     return res.json(updateit);
   }
   return res.json({ msg: "Invalid ID" });
+});
+
+// get job by user
+router.get("/my-jobs", auth, async (req, res) => {
+  const username = req.user.username;
+  const user = await Job.find({ addedby: username });
+
+  if (user.length <= 0) {
+    return res.json({ msg: "No Jobs!" });
+  }
+
+  return res.json({ size: user.length, jobs: user });
 });
 
 module.exports = router;
