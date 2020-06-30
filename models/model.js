@@ -4,17 +4,17 @@ const mongoose = require("mongoose");
 const jobmodel = mongoose.Schema({
   name: { type: String, required: true },
   item: { type: String },
-  problem: { type: String },
+  defect: { type: String },
   number: { type: Number },
   price: { type: Number },
   status: [
     {
-      title: { type: String },
-      addedby: { type: String },
+      title: { type: String, default: "Job Registered" },
+      Author: { type: String },
       date: { type: Date, default: Date.now },
     },
   ],
-  addedby: { type: String },
+  Author: { type: String },
   Date: { type: Date, default: Date.now() },
 });
 

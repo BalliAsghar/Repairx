@@ -1,34 +1,19 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { Component } from "react";
+// eslint-disable-next-line
 import axios from "axios";
-function App() {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    axios({
-      method: "post",
-      url: "/user/register",
-      headers: {
-        "content-type": "application/json",
-      },
-      data: {
-        username: data.username,
-        password: data.password,
-      },
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  };
-  return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input name="username" ref={register} />
-        <input name="password" ref={register} />
-        <input type="submit" />
-      </form>
-    </div>
-  );
+
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFzZ2hhciIsImlhdCI6MTU5MzUzMzA5MywiZXhwIjoxNTk0MTM3ODkzfQ.fw2SuaE51upYqSBjiOU1YerWD_ykrxsWXwrvaa5stVQ",
+    };
+  }
+  render() {
+    return <p>Hello</p>;
+  }
 }
 
 export default App;

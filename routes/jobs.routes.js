@@ -10,14 +10,14 @@ router.post("/job", auth, async (req, res) => {
   const job = new Job({
     name: req.body.name,
     item: req.body.item,
-    problem: req.body.problem,
+    defect: req.body.defect,
     number: req.body.number,
     price: req.body.price,
     status: {
       title: req.body.status.title,
-      addedby: req.user.username,
+      Author: req.user.username,
     },
-    addedby: req.user.username,
+    Author: req.user.username,
   });
   const save = await job.save();
 
@@ -42,7 +42,7 @@ router.get("/job/:_id", auth, async (req, res) => {
 });
 
 // remove job
-router.post("/job/:_id", auth, async (req, res) => {
+router.delete("/job/:_id", auth, async (req, res) => {
   const _id = req.params._id;
   if (!helper.isValidId(_id)) {
     return res.json({ msg: "ID Not Valid" });
@@ -69,24 +69,48 @@ router.put("/updatejob/:_id", auth, async (req, res) => {
   return res.json({ msg: "Invalid ID" });
 });
 
-// // Update Job Status
-// router.post("/job-status/:_id", auth, async (req, res) => {
-//       const _id = req.params._id;
-//       if(helper.isValidId(_id)){
-//         const job = await.
-//       }
-// })
-
 // get job by user
 router.get("/my-jobs", auth, async (req, res) => {
-  const username = req.user.username;
-  const user = await Job.find({ addedby: username });
+  const Author = req.user.username;
+  const user = await Job.find({ Author: username });
 
   if (user.length <= 0) {
     return res.json({ msg: "No Jobs!" });
   }
 
   return res.json({ size: user.length, jobs: user });
+});
+
+// Update Job Status
+router.put("/Update-status/:_id", auth, async (req, res) => {
+  const id = req.params._id;
+  const status = {
+    title: req.body.title,
+    Author: req.user.username,
+  };
+
+  const job = await Job.findByIdAndUpdate(id, { $push: { status: status } });
+
+  return res.json({ msg: "I belive is done!" });
+});
+
+// Get Job Status by ID
+router.get("/status/:_id", auth, async (req, res) => {
+  const id = req.params._id;
+  try {
+    if (helper.isValidId(id)) {
+      const job = await Job.findById(id);
+
+      if (job == null) {
+        return res.json({ msg: "Job Not Found!" });
+      }
+
+      return res.json(job.status);
+    }
+    return res.json({ msg: "Id not valid" });
+  } catch (err) {
+    return res.status(500).json({ msg: "Server Error" });
+  }
 });
 
 module.exports = router;
