@@ -13,6 +13,10 @@ router.post("/job", auth, async (req, res) => {
     problem: req.body.problem,
     number: req.body.number,
     price: req.body.price,
+    status: {
+      title: req.body.status.title,
+      addedby: req.user.username,
+    },
     addedby: req.user.username,
   });
   const save = await job.save();
@@ -64,6 +68,14 @@ router.put("/updatejob/:_id", auth, async (req, res) => {
   }
   return res.json({ msg: "Invalid ID" });
 });
+
+// // Update Job Status
+// router.post("/job-status/:_id", auth, async (req, res) => {
+//       const _id = req.params._id;
+//       if(helper.isValidId(_id)){
+//         const job = await.
+//       }
+// })
 
 // get job by user
 router.get("/my-jobs", auth, async (req, res) => {
