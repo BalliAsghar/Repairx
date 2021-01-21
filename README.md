@@ -1,2 +1,3 @@
 # CMS
-Customer Management System
+Back-end for a computer shop to manage their customers.
+
