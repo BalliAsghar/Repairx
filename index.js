@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("dev"));
 
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: "./config.env" });
 
 // database connection
 connectdb();

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { environment } = require("../config/config.env");
+const { environment } = require("../config.env");
 module.exports = {
   isValidId: (id) => {
     return mongoose.Types.ObjectId.isValid(id);
