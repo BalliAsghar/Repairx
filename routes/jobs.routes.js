@@ -23,11 +23,10 @@ router.post("/job", auth, async (req, res) => {
 
   return res.json({ Status: 201, msg: "Job Saved!" });
 });
-
 // Get all jobs
-router.get("/jobs", auth, async (req, res) => {
-  const job = await Job.find({});
-  res.json({ Status: 200, job });
+router.get("/jobs", async (req, res) => {
+  const jobs = await Job.find({});
+  res.render("jobs", { jobs });
 });
 
 // Get Job by Id

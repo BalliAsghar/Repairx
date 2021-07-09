@@ -6,7 +6,7 @@ const jobmodel = mongoose.Schema({
   item: { type: String },
   defect: { type: String },
   number: { type: Number },
-  price: { type: Number },
+  price: { type: String },
   status: [
     {
       title: { type: String, default: "Job Registered" },
