@@ -1,18 +1,18 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const connectdb = require("./config/db");
 const cors = require("cors");
 const JobRoutes = require("./routes/jobs.routes");
-const morgan = require("morgan");
 const UserRoute = require("./routes/user.routes");
 const dotenv = require("dotenv");
 const colors = require("colors");
+const path = require("path");
 
 // app initialization
 const app = express();
-app.use(bodyParser.json());
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 app.use(cors());
-app.use(morgan("dev"));
 
 dotenv.config({ path: "./config.env" });
 
@@ -20,7 +20,7 @@ dotenv.config({ path: "./config.env" });
 connectdb();
 
 // index route
-app.get("/", (req, res) => res.status(200).send("Hello"));
+app.get("/", (req, res) => res.render("home"));
 app.use("/api", JobRoutes);
 app.use("/user", UserRoute);
 
