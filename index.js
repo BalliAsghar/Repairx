@@ -3,12 +3,9 @@ const connectdb = require("./config/db");
 const cors = require("cors");
 const JobRoutes = require("./routes/jobs.routes");
 const UserRoute = require("./routes/user.routes");
-const ClientRoutes = require("./routes/client.routes");
 const dotenv = require("dotenv");
 const colors = require("colors");
 const path = require("path");
-const ejs = require("ejs");
-const Job = require("./models/model");
 const bodyParser = require("body-parser");
 const { urlencoded } = require("body-parser");
 
@@ -27,12 +24,12 @@ dotenv.config({ path: "./config.env" });
 connectdb();
 
 // index route
-app.get("/", ClientRoutes);
+app.get("/", (req, res) => {
+  res.render(`home`);
+});
 app.use("/api", JobRoutes);
 app.use("/user", UserRoute);
-app.get("/login", (req, res) => {
-  res.render("login");
-});
+
 // Port
 const port = process.env.PORT || 8080;
 
