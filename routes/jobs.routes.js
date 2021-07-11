@@ -26,7 +26,7 @@ router.post("/job", auth, async (req, res) => {
 // Get all jobs
 router.get("/jobs", async (req, res) => {
   const jobs = await Job.find({});
-  res.render("jobs", { jobs });
+  res.json(jobs);
 });
 
 // Get Job by Id

@@ -3,9 +3,14 @@ const connectdb = require("./config/db");
 const cors = require("cors");
 const JobRoutes = require("./routes/jobs.routes");
 const UserRoute = require("./routes/user.routes");
+const ClientRoutes = require("./routes/client.routes");
 const dotenv = require("dotenv");
 const colors = require("colors");
 const path = require("path");
+const ejs = require("ejs");
+const Job = require("./models/model");
+const bodyParser = require("body-parser");
+const { urlencoded } = require("body-parser");
 
 // app initialization
 const app = express();
@@ -13,6 +18,8 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 dotenv.config({ path: "./config.env" });
 
@@ -20,10 +27,12 @@ dotenv.config({ path: "./config.env" });
 connectdb();
 
 // index route
-app.get("/", (req, res) => res.render("home"));
+app.get("/", ClientRoutes);
 app.use("/api", JobRoutes);
 app.use("/user", UserRoute);
-
+app.get("/login", (req, res) => {
+  res.render("login");
+});
 // Port
 const port = process.env.PORT || 8080;
 
