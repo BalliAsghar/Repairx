@@ -28,14 +28,13 @@ connectdb();
 app.get("/", async (req, res) => {
   const jobs = await Job.find({});
   // console.log(jobs);
-  res.render(`home`, { jobs });
+  res.render("home", { jobs });
 });
 app.get("/login", (req, res) => {
   res.render("login");
 });
 
 app.get("/job/:id", async (req, res) => {
-  // const _id = req._id;
   const job = await Job.findById(req.params.id);
   console.log(job);
   res.render("job", { job });

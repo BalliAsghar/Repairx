@@ -40,7 +40,9 @@
       </div>
     </nav>
     <ul>
-      <%>
+      <% for (let job of jobs) {%>
+      <li><a href="/job/<%= job._id%>"><%= job.name %> </a></li>
+      <%} %>
     </ul>
   </body>
 </html>
