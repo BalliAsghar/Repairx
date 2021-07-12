@@ -27,6 +27,11 @@ connectdb();
 app.get("/", (req, res) => {
   res.render(`home`);
 });
+app.get("/login", (req, res) => {
+  res.render("login")
+})
+
+app.get("/register", (req, res) => res.render("register"))
 app.use("/api", JobRoutes);
 app.use("/user", UserRoute);
 
@@ -39,3 +44,4 @@ app.listen(port, (err) =>
     `Server Working At Port:`.bold + `${process.env.PORT.underline.bold}`
   )
 );
+
