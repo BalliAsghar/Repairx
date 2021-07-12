@@ -40,7 +40,13 @@
       </div>
     </nav>
     <ul>
-      <%>
+      <%= for(var i=0; i < job.length; i++) {%>
+      <li><%= jobs[i]._id %></li>
+      <li><%= jobs[i].name %></li>
+      <li><%= jobs[i].item %></li>
+      <li><%= jobs[i].defect %></li>
+      <li><%= jobs[i].price %></li>
+      <% } %>
     </ul>
   </body>
 </html>

@@ -8,6 +8,7 @@ const colors = require("colors");
 const path = require("path");
 const bodyParser = require("body-parser");
 const { urlencoded } = require("body-parser");
+const Job = require("./models/model");
 
 // app initialization
 const app = express();
@@ -24,14 +25,23 @@ dotenv.config({ path: "./config.env" });
 connectdb();
 
 // index route
-app.get("/", (req, res) => {
-  res.render(`home`);
+app.get("/", async (req, res) => {
+  const jobs = await Job.find({});
+  // console.log(jobs);
+  res.render(`home`, { jobs });
 });
 app.get("/login", (req, res) => {
-  res.render("login")
-})
+  res.render("login");
+});
 
-app.get("/register", (req, res) => res.render("register"))
+app.get("/job/:id", async (req, res) => {
+  // const _id = req._id;
+  const job = await Job.findById(req.params.id);
+  console.log(job);
+  res.render("job", { job });
+});
+
+app.get("/register", (req, res) => res.render("register"));
 app.use("/api", JobRoutes);
 app.use("/user", UserRoute);
 
@@ -44,4 +54,3 @@ app.listen(port, (err) =>
     `Server Working At Port:`.bold + `${process.env.PORT.underline.bold}`
   )
 );
-
