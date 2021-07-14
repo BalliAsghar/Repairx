@@ -4,10 +4,8 @@ const cors = require("cors");
 const JobRoutes = require("./routes/jobs.routes");
 const UserRoute = require("./routes/user.routes");
 const dotenv = require("dotenv");
-const colors = require("colors");
 const path = require("path");
 const bodyParser = require("body-parser");
-const { urlencoded } = require("body-parser");
 
 // app initialization
 const app = express();
@@ -36,6 +34,6 @@ const port = process.env.PORT || 8080;
 // server initialization
 app.listen(port, (err) =>
   console.log(
-    `Server Working At Port:`.bold + `${process.env.PORT.underline.bold}`
+    `Server Working At Port:` + `${PORT}`
   )
 );
