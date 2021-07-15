@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
-
+const shortid = require("shortid");
 // database Schema
 const jobmodel = mongoose.Schema({
+  _id: {
+    type: String,
+    default: shortid.generate,
+  },
   name: { type: String, required: true },
   item: { type: String },
   defect: { type: String },

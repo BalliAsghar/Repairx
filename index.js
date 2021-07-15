@@ -22,9 +22,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 connectdb();
 
 // index route
-app.get("/", (req, res) => {
-  res.render(`home`);
+app.get("/", async (req, res) => {
+  const jobs = await Job.find({});
+  // console.log(jobs);
+  res.render("home", { jobs });
 });
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/job/:id", async (req, res) => {
+  const job = await Job.findById(req.params.id);
+  console.log(job);
+  res.render("job", { job });
+});
+
+app.get("/register", (req, res) => res.render("register"));
 app.use("/api", JobRoutes);
 app.use("/user", UserRoute);
 

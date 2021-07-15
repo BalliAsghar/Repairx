@@ -22,10 +22,12 @@
     "express-handlebars": "^4.0.6",
     "jose-browser-runtime": "^3.14.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.16"
+    "mongoose": "^5.9.16",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "colors": "^1.4.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12"
   }
 }
