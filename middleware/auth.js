@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
 
   // Verify token
   try {
-    jwt.verify(token, process.env.secretOrKey, (error, decoded) => {
+    jwt.verify(token, process.env.SecretOrKey, (error, decoded) => {
       if (error == null) {
         req.user = decoded;
         next();

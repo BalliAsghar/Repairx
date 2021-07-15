@@ -10,13 +10,13 @@ const bodyParser = require("body-parser");
 // app initialization
 const app = express();
 
+require('dotenv').config()
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-dotenv.config({ path: "./config.env" });
 
 // database connection
 connectdb();
@@ -32,8 +32,8 @@ app.use("/user", UserRoute);
 const port = process.env.PORT || 8080;
 
 // server initialization
-app.listen(port, (err) =>
+app.listen(3000, (err) =>
   console.log(
-    `Server Working At Port:` + `${PORT}`
+    `Server Working At Port ${port}`
   )
 );
