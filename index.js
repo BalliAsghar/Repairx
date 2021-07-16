@@ -6,9 +6,11 @@ const UserRoute = require("./routes/user.routes");
 const dotenv = require("dotenv");
 const path = require("path");
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
 
 // app initialization
 const app = express();
+app.use(morgan("dev"));
 
 require('dotenv').config()
 app.set("view engine", "ejs");
@@ -16,7 +18,6 @@ app.set("views", path.join(__dirname, "views"));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 
 // database connection
 connectdb();
