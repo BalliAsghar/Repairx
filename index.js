@@ -34,8 +34,10 @@ app.get("/login", (req, res) => {
 
 app.get("/job/:id", async (req, res) => {
   const job = await Job.findById(req.params.id);
-  console.log(job);
-  res.render("job", { job });
+  if(job === null){
+    return res.render("404");
+  } 
+  return res.render("job", { job });
 });
 
 app.get("/register", (req, res) => res.render("register"));
