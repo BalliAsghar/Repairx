@@ -7,12 +7,14 @@ const dotenv = require("dotenv");
 const path = require("path");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const ejsMate = require("ejs-mate");
 
 // app initialization
 const app = express();
-app.use(morgan("dev"));
 
+app.use(morgan("dev"));
 require('dotenv').config()
+app.engine('ejs', ejsMate)
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(cors());
@@ -28,6 +30,7 @@ app.get("/", async (req, res) => {
   // console.log(jobs);
   res.render("home", { jobs });
 });
+
 app.get("/login", (req, res) => {
   res.render("login");
 });
@@ -35,7 +38,8 @@ app.get("/login", (req, res) => {
 app.get("/job/:id", async (req, res) => {
   const job = await Job.findById(req.params.id);
   if(job === null){
-    return res.render("404");
+     return res.render("404");
+    console.log("404");
   } 
   return res.render("job", { job });
 });
@@ -47,9 +51,14 @@ app.use("/user", UserRoute);
 // Port
 const port = process.env.PORT || 8080;
 
+// 404
+app.use((req, res) => {
+  res.status(404).render("404");
+})
+
 // server initialization
 app.listen(3000, (err) =>
   console.log(
     `Server Working At Port ${port}`
   )
-);
+)
