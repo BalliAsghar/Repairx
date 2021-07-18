@@ -24,7 +24,7 @@ router.post("/job", auth, async (req, res) => {
   return res.json({ Status: 201, msg: "Job Saved!" });
 });
 // Get all jobs
-router.get("/jobs", async (req, res) => {
+router.get("/jobs", auth, async (req, res) => {
   const jobs = await Job.find({});
   res.json(jobs);
 });
@@ -71,7 +71,7 @@ router.put("/updatejob/:_id", auth, async (req, res) => {
 // get job by user
 router.get("/my-jobs", auth, async (req, res) => {
   const Author = req.user.username;
-  const user = await Job.find({ Author: username });
+  const user = await Job.find({ Author: Author });
 
   if (user.length <= 0) {
     return res.json({ msg: "No Jobs!" });

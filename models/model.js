@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const shortid = require("shortid");
 // database Schema
 const jobmodel = mongoose.Schema({
-  _id: {
+  ref: {
     type: String,
     default: shortid.generate,
   },
@@ -19,6 +19,7 @@ const jobmodel = mongoose.Schema({
     },
   ],
   Author: { type: String },
+  job_done: {type: Boolean},
   Date: { type: Date, default: Date.now() },
 });
 
