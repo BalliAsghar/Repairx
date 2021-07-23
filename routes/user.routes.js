@@ -4,6 +4,7 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { exp } = require("../middleware/helper");
+const { token } = require("morgan");
 
 // Registry User
 router.post("/register", async (req, res) => {
@@ -61,6 +62,17 @@ router.post("/auth", async (req, res) => {
   );
 
   return res.json({ token: token });
+});
+
+// Verify Jwt
+router.post("/verify", async (req, res) => {
+  const token = req.headers["x-auth-token"];
+  try {
+    const decoded = await jwt.verify(token, process.env.SecretOrKey);
+    return res.json({ user: true, decoded });
+  } catch (err) {
+    return res.status(500).json({ user: false, err });
+  }
 });
 
 module.exports = router;

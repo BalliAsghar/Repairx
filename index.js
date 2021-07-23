@@ -31,7 +31,7 @@ app.use("/user", UserRoute);
 const port = process.env.PORT || 8080;
 
 // server initialization
-app.listen(3000, (err) =>
+app.listen(port, (err) =>
   console.log(
     `Server Working At Port ${port}`
   )
