@@ -65,7 +65,7 @@ router.post("/auth", async (req, res) => {
 });
 
 // Verify Jwt
-router.post("/verify", async (req, res) => {
+router.get("/verify", async (req, res) => {
   const token = req.headers["x-auth-token"];
   try {
     const decoded = await jwt.verify(token, process.env.SecretOrKey);
