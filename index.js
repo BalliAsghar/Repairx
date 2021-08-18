@@ -11,7 +11,7 @@ const morgan = require("morgan");
 const app = express();
 
 app.use(morgan("dev"));
-require('dotenv').config()
+require("dotenv").config();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,7 +21,7 @@ connectdb();
 
 // index route
 app.get("/", async (req, res) => {
-res.send("Bitch!")
+  res.send("Bitch!");
 });
 
 app.use("/api", JobRoutes);
@@ -31,8 +31,4 @@ app.use("/user", UserRoute);
 const port = process.env.PORT || 8080;
 
 // server initialization
-app.listen(port, (err) =>
-  console.log(
-    `Server Working At Port ${port}`
-  )
-)
+app.listen(port, (err) => console.log(`Server Working At Port ${port}`));
