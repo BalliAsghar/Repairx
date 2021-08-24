@@ -35,7 +35,7 @@ router.post("/register", async (req, res) => {
       {
         username,
       },
-      process.env.secretOrKey,
+      process.env.SecretOrKey,
       {
         expiresIn: exp(),
       }
@@ -79,7 +79,7 @@ router.post("/auth", async (req, res) => {
     {
       username: user.username,
     },
-    process.env.secretOrKey,
+    process.env.SecretOrKey,
     {
       expiresIn: exp(),
     }
