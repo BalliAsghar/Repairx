@@ -14,7 +14,6 @@ router.post("/job", auth, async (req, res) => {
     number: req.body.number,
     price: req.body.price,
     status: {
-      title: req.body.status.title,
       Author: req.user.username,
     },
     Author: req.user.username,

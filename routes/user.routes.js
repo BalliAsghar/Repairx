@@ -63,6 +63,7 @@ router.post("/auth", async (req, res) => {
     return res.json({
       msg: "User does not exist!",
       authenticated: false,
+      statusCode: 404,
     });
   }
 
@@ -72,6 +73,7 @@ router.post("/auth", async (req, res) => {
     return res.json({
       msg: "Password do not match!",
       authenticated: false,
+      statusCode: 401,
     });
   }
 
@@ -88,6 +90,7 @@ router.post("/auth", async (req, res) => {
   return res.json({
     token: token,
     authenticated: true,
+    statusCode: 200,
   });
 });
 

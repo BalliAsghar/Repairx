@@ -19,7 +19,7 @@ const jobmodel = mongoose.Schema({
     },
   ],
   Author: { type: String },
-  job_done: {type: Boolean},
+  job_done: { type: Boolean },
   Date: { type: Date, default: Date.now() },
 });
 
