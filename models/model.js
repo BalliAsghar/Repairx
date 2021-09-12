@@ -13,7 +13,7 @@ const jobmodel = mongoose.Schema({
   price: { type: String },
   fixed: { type: Boolean },
   Author: { type: String },
-  job_done: { type: Boolean },
+  job_done: { type: Boolean, default: false },
   Date: { type: Date, default: Date.now() },
 });
 
