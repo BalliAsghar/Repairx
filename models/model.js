@@ -11,7 +11,6 @@ const jobmodel = mongoose.Schema({
   defect: { type: String },
   number: { type: Number },
   price: { type: String },
-  fixed: { type: Boolean },
   Author: { type: String },
   job_done: { type: Boolean, default: false },
   Date: { type: Date, default: Date.now() },
