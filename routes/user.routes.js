@@ -108,6 +108,7 @@ router.get("/verify", async (req, res) => {
     return res.status(500).json({
       authenticated: false,
       err,
+      statusCode: 500,
     });
   }
 });
