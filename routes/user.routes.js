@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const { exp } = require("../middleware/helper");
 const { token } = require("morgan");
 const _ = require("lodash");
+const Job = require("../models/model");
 // Registry User
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -122,9 +123,12 @@ router.get("/profile", async (req, res) => {
       username,
     });
     const res_user = _.pick(user, ["username", "date", "_id"]);
+    const Author = res_user.username;
+    const UserJobs = await Job.find({ Author: Author });
     return res.status(200).json({
       authenticated: true,
       res_user,
+      UserJobs,
     });
   } catch (error) {
     return res.status(404).json({
