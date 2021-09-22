@@ -80,16 +80,16 @@ router.get("/my-jobs", auth, async (req, res) => {
 });
 
 // Update Job Status
-router.put("/Update-status/:_id", auth, async (req, res) => {
-  const id = req.params._id;
-  const status = {
-    title: req.body.title,
-    Author: req.user.username,
-  };
+router.put("/Update-status/:_id/", auth, async (req, res) => {
+  try {
+    const _id = req.params._id;
+    const currentStatus = req.body.currentStatus;
+    const job = await Job.findByIdAndUpdate(_id, { job_done: !currentStatus });
 
-  const job = await Job.findByIdAndUpdate(id, { $push: { status: status } });
-
-  return res.json({ msg: "I belive is done!" });
+    return res.json({ msg: "Job Status Updated!", Status: 200 });
+  } catch (error) {
+    return res.json(error);
+  }
 });
 
 // Get Job Status by ID
