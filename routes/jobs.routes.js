@@ -83,7 +83,7 @@ router.get("/my-jobs", auth, async (req, res) => {
 router.put("/Update-status/:_id/", auth, async (req, res) => {
   try {
     const _id = req.params._id;
-    const currentStatus = req.body.currentStatus;
+    const currentStatus = req.body.status;
     const job = await Job.findByIdAndUpdate(_id, { job_done: !currentStatus });
 
     return res.json({ msg: "Job Status Updated!", Status: 200 });
