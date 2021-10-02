@@ -43,13 +43,13 @@ router.get("/job/:_id", auth, async (req, res) => {
 router.delete("/job/:_id", auth, async (req, res) => {
   const _id = req.params._id;
   if (!helper.isValidId(_id)) {
-    return res.json({ msg: "ID Not Valid" });
+    return res.json({ msg: "ID Not Valid", jobRemoved: false });
   }
   const removejob = await Job.findByIdAndRemove(_id);
   if (removejob == null) {
-    return res.json({ msg: "Job Doesn't exist!'" });
+    return res.json({ msg: "Job Doesn't exist!'", jobRemoved: false });
   }
-  return res.json({ msg: `Job ${_id} removed` });
+  return res.json({ msg: `Job ${_id} removed`, jobRemoved: true });
 });
 
 // Update Job
