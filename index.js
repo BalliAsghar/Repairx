@@ -3,14 +3,14 @@ const connectdb = require("./config/db");
 const cors = require("cors");
 const JobRoutes = require("./routes/jobs.routes");
 const UserRoute = require("./routes/user.routes");
-const dotenv = require("dotenv");
+
 const morgan = require("morgan");
 
 // app initialization
 const app = express();
 
 app.use(morgan("dev"));
-require("dotenv").config();
+require("dotenv").config({ path: "./Prod.env" });
 app.use(cors());
 app.use(express.json());
 
