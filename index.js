@@ -4,7 +4,6 @@ const cors = require("cors");
 const JobRoutes = require("./routes/jobs.routes");
 const UserRoute = require("./routes/user.routes");
 const dotenv = require("dotenv");
-const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
 // app initialization
@@ -13,15 +12,15 @@ const app = express();
 app.use(morgan("dev"));
 require("dotenv").config();
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+
 
 // database connection
 connectdb();
 
 // index route
 app.get("/", async (req, res) => {
-  res.send("Bitch!");
+  res.send("Hello!");
 });
 
 app.use("/api", JobRoutes);
