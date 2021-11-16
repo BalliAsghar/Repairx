@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-info {
+  @apply bg-indigo-600;
+  @apply border-indigo-600;
+}
+.btn-info:hover {
+  @apply bg-indigo-600;
+  @apply border-indigo-600;
+}
