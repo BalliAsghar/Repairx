@@ -1,15 +1,16 @@
 {
-  "name": "code",
-  "version": "1.1.0",
+  "name": "repairx",
+  "version": "2.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon index.js",
+    "start": "node index.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
-  "author": "",
+  "author": "BalliAsghar",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
