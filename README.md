@@ -1,7 +1,7 @@
 
 # RepairX
 
-RepairX is a mobile app that helps shops manage their repair jobs. The front end is built with React. while the back end is built with NodeJS.
+RepairX is a app that helps shops manage their repair jobs. The front end is built with React. while the back end is built with NodeJS.
 
 
 ## Tech Stack
