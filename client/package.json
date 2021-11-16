@@ -6,6 +6,9 @@
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "prettier --check \"src/**/*.{js,jsx}\""
   },
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "axios": "^0.21.4",
     "date-fns": "^2.23.0",
