@@ -7,7 +7,7 @@ const config = {
 };
 
 const login = async (username, password) => {
-  const user = await axios.post(`${URI}/auth`, { username, password }, config);
+  const user = await axios.post(`/user/auth`, { username, password }, config);
   if (user.data.authenticated === true) {
     return {
       auth: true,
@@ -23,7 +23,7 @@ const login = async (username, password) => {
 
 const register = async (username, password) => {
   const user = await axios.post(
-    `${URI}/register`,
+    `/user/register`,
     { username, password },
     config
   );
@@ -43,7 +43,7 @@ const register = async (username, password) => {
 
 const verify = async (token) => {
   try {
-    const user = await axios.get(`${URI}/verify`, {
+    const user = await axios.get(`/user/verify`, {
       headers: { 'x-auth-token': token }
     });
     if (user.data.authenticated === true) {
