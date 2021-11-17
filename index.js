@@ -5,12 +5,9 @@ const JobRoutes = require("./routes/jobs.routes");
 const UserRoute = require("./routes/user.routes");
 const path = require("path");
 
-const morgan = require("morgan");
-
 // app initialization
 const app = express();
 
-app.use(morgan("dev"));
 require("dotenv").config();
 app.use(cors());
 app.use(express.json());
