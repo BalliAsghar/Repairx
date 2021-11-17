@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon index.js",
     "start": "node index.js",
-    "heroku-prebuild": "npm install -D --prefix client",
+    "heroku-prebuild": "npm install -d --prefix client",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
