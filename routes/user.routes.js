@@ -4,7 +4,6 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { exp } = require("../middleware/helper");
-const { token } = require("morgan");
 const _ = require("lodash");
 const Job = require("../models/model");
 // Registry User
