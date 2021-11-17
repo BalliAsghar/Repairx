@@ -18,8 +18,6 @@ app.use(express.json());
 // database connection
 connectdb();
 
-app.use(express.static(path.join(__dirname, "client/build")));
-
 app.use("/api", JobRoutes);
 app.use("/user", UserRoute);
 
