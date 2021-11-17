@@ -20,6 +20,8 @@ connectdb();
 
 console.log(process.env);
 
+app.get("/hello", (req, res) => res.send({ msg: "hello" }))
+
 app.use("/api", JobRoutes);
 app.use("/user", UserRoute);
 
