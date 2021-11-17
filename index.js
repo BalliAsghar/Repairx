@@ -18,17 +18,19 @@ app.use(express.json());
 // database connection
 connectdb();
 
+app.use("/", (req, res, next) => res.send("Hello World"));
+
 app.use("/api", JobRoutes);
 app.use("/user", UserRoute);
 
-if (process.env.NODE_ENV === "production") {
-  // Serve any static files
-  app.use(express.static(path.join(__dirname, "client/build")));
-  // Handle React routing, return all requests to React app
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "/client/build", "index.html"));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   // Serve any static files
+//   app.use(express.static(path.join(__dirname, "client/build")));
+//   // Handle React routing, return all requests to React app
+//   app.get("*", function (req, res) {
+//     res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+//   });
+// }
 
 // Port
 const port = process.env.PORT || 8080;
