@@ -15,7 +15,7 @@ app.use(express.json());
 // database connection
 connectdb();
 
-app.use("/", (req, res, next) => res.send("Hello World"));
+app.get("/", (req, res) => res.send("Hello"));
 
 app.use("/api", JobRoutes);
 app.use("/user", UserRoute);
