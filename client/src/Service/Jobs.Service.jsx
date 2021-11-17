@@ -1,5 +1,5 @@
 import axios from "axios";
-const URI = "http://localhost:8080/api";
+const URI = "https://repairx.herokuapp.com/api";
 const config = (token) => {
   return {
     headers: {
@@ -9,7 +9,7 @@ const config = (token) => {
   };
 };
 const getAllJobs = async (token) => {
-  const Jobs = await axios.get(`/api/jobs`, {
+  const Jobs = await axios.get(`${URI}/jobs`, {
     headers: {
       "Content-type": "application/json",
       "x-auth-token": token,
@@ -20,7 +20,7 @@ const getAllJobs = async (token) => {
 
 const registerJob = async (values, token) => {
   const Job = await axios.post(
-    `/api/job`,
+    `${URI}/job`,
     {
       name: values.name,
       item: values.device,
@@ -39,7 +39,7 @@ const registerJob = async (values, token) => {
 };
 
 const changeStatus = async (id, status, token) => {
-  const UpdateStatus = await axios.put(`/api/Update-status/${id}/`, { status: status }, config(token));
+  const UpdateStatus = await axios.put(`${URI}/Update-status/${id}/`, { status: status }, config(token));
   if (UpdateStatus.data.Status === 200) {
     return {
       JobUpdated: true,
@@ -52,7 +52,7 @@ const changeStatus = async (id, status, token) => {
 };
 
 const removeJob = async (id, token) => {
-  const RemovedJob = await axios.delete(`/api/job/${id}/`, config(token));
+  const RemovedJob = await axios.delete(`${URI}/job/${id}/`, config(token));
 
   if (RemovedJob.data.jobRemoved === true) {
     return {
