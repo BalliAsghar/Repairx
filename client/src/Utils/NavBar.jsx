@@ -50,15 +50,7 @@ function NavBar() {
           ) : (
             <div className="flex space-x-4 items-center">
               <h1 className="text-xl lg:text-2xl font-bold cursor-pointer hover:text-indigo-500 transform transition duration-500 hover:scale-110">
-                <Link
-                  to={{
-                    pathname: `/profile/${user}`,
-                    state: { user: user }
-                  }}
-                  className="border-2 p-1 border-white text-white font-mono bg-indigo-800 rounded-md"
-                >
-                  {user}
-                </Link>
+                  {user} 
               </h1>
               <div className="cursor-pointer hover:text-indigo-500 transform transition duration-500 hover:scale-110 text-xl lg:text-2xl font-bold">
               <Link to={'/'} 
