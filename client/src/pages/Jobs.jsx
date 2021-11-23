@@ -69,7 +69,14 @@ function Jobs() {
                 <td>{index}</td>
 
                 <td className="text-indigo-600 font-semibold link link-hover">
+                  <Link
+                    to={{
+                      pathname: `/job/${job.ref}`,
+                      state: { job: job },
+                    }}
+                  >
                     {job.name}
+                  </Link>
                 </td>
 
                 <td>0{job.number}</td>
