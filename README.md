@@ -10,7 +10,7 @@ RepairX is a app that helps shops manage their repair jobs. The front end is bui
 - **Framework**: [Express](https://expressjs.com/)
 - **Database**: [MongoDB](https://www.mongodb.com/)
 - **ODM**: [Mongoose](https://mongoosejs.com/)
-- **Authentication**: [JWT](https://jwt.io/), [PassportJS](http://www.passportjs.org/)
+- **Authentication**: [JWT](https://jwt.io/)
 - **Deployment**: [heroku](https://www.heroku.com/)
 
 ### Front-End 
